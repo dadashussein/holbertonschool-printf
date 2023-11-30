@@ -14,8 +14,10 @@ int _printf(const char *format, ...)
     char *str;
 
     va_list valist;
+    
+    if(format == NULL)
+    return (-1);
     va_start(valist, format);
-
 
   while (format && format[i]) {
     if (format[i] == '%') {
@@ -35,11 +37,13 @@ int _printf(const char *format, ...)
       case '%': {
         _putchar('%');
       }
+      default:
+	_putchar('%');
+	_putchar(format[i]);
       }
     } else {
       _putchar(format[i]);
     }
-
     i++;
   }
 }
