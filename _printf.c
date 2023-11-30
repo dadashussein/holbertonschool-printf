@@ -3,6 +3,22 @@
 #include <stdio.h>
 #include <unistd.h>
 /**
+ * _print_string - prints a string
+ * @s: string to print
+ *
+ * Return: number of characters printed
+ */
+void _print_string(char *s)
+{
+	int i = 0;
+
+	while (s[i] != '\0')
+	{
+		_putchar(s[i]);
+		i++;
+	}
+}
+/**
  * _printf - produces output according to a format
  * @format: character string
  *
@@ -10,40 +26,43 @@
  */
 int _printf(const char *format, ...)
 {
-    int i = 0;
-    char *str;
+	va_list args;
+	unsigned int i;
 
-    va_list valist;
-    
-    if(format == NULL)
-    return (-1);
-    va_start(valist, format);
+	if (format == NULL)
+		return (-1);
+	va_start(args, format);
 
-  while (format && format[i]) {
-    if (format[i] == '%') {
-      i++;
-      switch (format[i]) {
-      case 'c':
-        _putchar(va_arg(valist, int));
-        break;
-      case 's': {
-        str = va_arg(valist, char *);
-        while (*str) {
-          _putchar(*str);
-          str++;
-        }
-        break;
-      }
-      case '%': {
-        _putchar('%');
-      }
-      default:
-	_putchar('%');
-	_putchar(format[i]);
-      }
-    } else {
-      _putchar(format[i]);
-    }
-    i++;
-  }
+	for (i = 0; format[i] != '\0'; i++)
+	{
+		if (format[i] == '%')
+		{
+			i++;
+			if (format[i] == 'c')
+			{
+				_putchar(va_arg(args, int));
+			}
+			else if (format[i] == 's')
+			{
+				_print_string(va_arg(args, char *));
+			}
+			else if (format[i] == '%')
+			{
+				_putchar('%');
+			}
+			else if (format[i] == '\0')
+			{
+				return (-1);
+			}
+			else
+			{
+				_putchar('%');
+				_putchar(format[i]);
+			}
+		}
+		else
+			_putchar(format[i]);
+	}
+	va_end(args);
+	return (i);
 }
