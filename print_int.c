@@ -2,6 +2,7 @@
 #include "main.h"
 /**
  * print_int - Prints integers.
+ * print_digits - Prints digits.
  * @int_list: Pointer to the va_list containing the int.
  * @num_digits: Pointer to the length counter.
  */

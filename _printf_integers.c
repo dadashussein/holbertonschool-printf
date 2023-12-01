@@ -4,12 +4,12 @@
 #include <stdlib.h>
 #include "main.h"
 /**
- * _printf - Custom printf function
+ * _printf_integers - Custom printf function
  * @format: A list of types of arguments passed to the function
  *
  * Return: integer
  */
-int _printf(const char *format, ...)
+int _printf_integers(const char *format, ...)
 {
 	va_list args;
 	int i, len = 0;
