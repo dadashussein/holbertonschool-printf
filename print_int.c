@@ -1,36 +1,32 @@
 #include <stdarg.h>
 #include "main.h"
 /**
- * print_int - Prints integers.
- * print_digits - Prints digits.
- * @int_list: Pointer to the va_list containing the int.
- * @num_digits: Pointer to the length counter.
+ * print_int - Prints a decimal (base 10) number
+ * @args: The name for va_list
+ * @length_counter: The amount of characters printed
  */
-
-void print_digits(int num)
+void print_int(va_list args, int *length_counter)
 {
-    if (num >= 10)
-        print_digits(num / 10);
-    _putchar((num % 10) + '0');
-}
+        unsigned int i = 1;
+        int number = va_arg(args, int);
 
-void print_int(va_list int_list, int *num_digits)
-{
-    int num = va_arg(int_list, int);
-    int temp_num = (num < 0) ? -num : num;
-    int count = 0;
-
-    if (num < 0) {
-        _putchar('-');
-        num = -num;
-    }
-
-    print_digits(num);
-
-    while (temp_num != 0) {
-        temp_num /= 10;
-        count++;
-    }
-
-    (*num_digits) += count;
+        if (number < 0)
+        {
+                _putchar('-');
+                number = -number;
+                (*length_counter)++;
+        }
+        while ((number / i) / 10 != 0)
+        {
+                i *= 10;
+                (*length_counter)++;
+        }
+        while (i != 1)
+        {
+                _putchar((number / i) + '0');
+                number = number % i;
+                i /= 10;
+        }
+        (*length_counter)++;
+        _putchar((number % 10) + '0');
 }
