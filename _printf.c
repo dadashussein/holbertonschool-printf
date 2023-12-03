@@ -55,8 +55,11 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
+			if (format[i + 1] != '\0') 
+			{
 			len += process_format(format[i + 1], args);
 			i++;
+		}
 		}
 		else
 		{
