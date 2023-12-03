@@ -25,6 +25,9 @@ int process_format(char format, va_list args)
 	case 'i':
 		print_int(args, &length_counter);
 		break;
+	case 'b':
+		print_binary(args, &length_counter);
+		break;
 	case '%':
 		_putchar('%');
 		length_counter++;
