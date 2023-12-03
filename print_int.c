@@ -7,26 +7,26 @@
  */
 void print_int(va_list args, int *length_counter)
 {
-        unsigned int i = 1;
-        int number = va_arg(args, int);
+unsigned int i = 1;
+	int number = va_arg(args, int);
 
-        if (number < 0)
-        {
-                _putchar('-');
-                number = -number;
-                (*length_counter)++;
-        }
-        while ((number / i) / 10 != 0)
-        {
-                i *= 10;
-                (*length_counter)++;
-        }
-        while (i != 1)
-        {
-                _putchar((number / i) + '0');
-                number = number % i;
-                i /= 10;
-        }
-        (*length_counter)++;
-        _putchar((number % 10) + '0');
+	if (number < 0)
+	{
+	_putchar('-');
+		number = -number;
+		(*length_counter)++;
+	}
+	while ((number / i) / 10 != 0)
+	{
+	i *= 10;
+		(*length_counter)++;
+	}
+	while (i != 1)
+	{
+	_putchar((number / i) + '0');
+		number = number % i;
+		i /= 10;
+	}
+	(*length_counter)++;
+	_putchar((number % 10) + '0');
 }
